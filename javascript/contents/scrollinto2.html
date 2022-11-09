@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        .contents{
+            position:fixed;
+            left: 0; top: 0;
+            width: 100%;
+            transition: 1s;
+            transform: translateY(0);
+        }
+        section{
+            height: 100vh;
+            display: flex; justify-content: center;
+            align-items: center;
+        }
+        section:nth-of-type(even){
+            background-color: #ddd;
+        }
+
+        aside{
+            position: fixed;
+            right: 5%; top: 50%;
+            transform: translateY(-50%);
+
+        }
+        aside button{
+            width: 15px; height: 15px;
+            border-radius: 100%;
+            border: 2px solid #000;
+            display: block;
+            margin: 10px 0;
+        }
+        aside button.active{
+            background-color: #000;
+        }
+    </style>
+    <div class="contents">
+        <section>content 01</section>
+        <section>content 02</section>
+        <section>content 03</section>
+        <section>content 04</section>
+        <section>content 05</section>
+    </div>
+
+    <aside>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+    </aside>
+
+    <script>
+        const contents = document.querySelector('.contents');
+        const btn = document.querySelectorAll('aside button');
+        const section = document.querySelectorAll('section');
+
+        let offset = [];
+        let inter,idx = 0;
+
+        document.body.style = `height:${contents.offsetHeight}px`; 
+        // offset[0] = 1000;
+        // offset.push();
+
+        section.forEach((ele) => {
+            offset.push(ele.offsetTop); 
+        });
+
+        let sd = {y:0, y2:0, state:true};
+        function scrollState(){
+
+            sd.y = window.pageYOffset;                  // sd.y는 창의 y축 페이지오프셋임 
+            sd.state = (sd.y > sd.y2) ?  true : false;  // sd.y가 sd.y2보다 크다면 참 아니면 거짓
+            sd.y2 = sd.y;                               // sd.y의 값을 sd.y2에 이관
+        }
+
+
+        // setTimeout 함수는 일정시간이 지난 후 함수가 한번 실행되고,
+        // clearTimeout 함수는 setTimeout함수를 취소하는 역할을 한다.
+
+
+        window.addEventListener('scroll',()=>{
+            scrollState();
+
+            clearTimeout(inter);
+            inter = setTimeout(() =>{  
+
+                // (sd.state && idx<4) ? idx++ : idx--
+                if(sd.state){
+                    //down
+                    if(idx<4) idx++;
+                }else{
+                    //up
+                    if(idx>0) idx--;
+                }         
+                contents.style = `transform:translateY(-${offset[idx]}px)`; //------------>이해x
+                
+                
+                
+                btn.forEach((v,k) =>{                   
+                    btn[k].classList.remove('active');
+                })
+                btn[idx].classList.add('active');
+                   
+                    // btn[idx].classList.add('active');
+                    // btn[k].classList.remove('active');
+                    // k = idx;
+            },50)
+
+
+        });
+
+
+        // offsetWidth (가로크기)
+        // offsetHeight (세로크기)
+
+        // offsetTop (크기)
+        // offsetLeft (크기)
+
+
+    </script>
+
+
+</body>
+</html>

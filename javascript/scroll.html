@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div>
+    <figure><img src="./img/01.jpg" alt=""></figure>
+    <figure><img src="./img/02.jpg" alt=""></figure>
+    <figure><img src="./img/03.jpg" alt=""></figure>
+    <figure><img src="./img/04.jpg" alt=""></figure>
+    <figure><img src="./img/05.jpg" alt=""></figure>
+    <figure><img src="./img/06.jpg" alt=""></figure>
+    <figure><img src="./img/07.jpg" alt=""></figure>
+</div>
+<style>
+    /* html{scroll-behavior: smooth;} */
+    figure{
+        opacity: 0;
+        /* margin-top: 300px; */
+        transform: translateY(50%);
+        transition: 1s;
+    }
+    figure.active{
+        opacity: 1;
+        /* margin-top: 0px; */
+        transform: translateY(0%);
+    }
+</style>
+
+<script>
+
+function init(){
+
+    const elFigure = document.querySelectorAll('figure');
+    let sd = {y:0, y2:0, state:true};
+
+    let offset = [];
+    elFigure.forEach((ele) => {
+        offset.push(ele.offsetTop - window.innerHeight * 0.7);
+    });
+    console.log(offset);
+
+    window.addEventListener('scroll', () =>{
+        
+        // elFigure[3].scrollIntoView(true);
+        // window.scrollTo(0,780);
+
+
+
+        sd.y = window.pageYOffset;
+        // 현재스크롤보다 y2값이 크냐 작냐
+        sd.state = (sd.y > sd.y2) ?  true : false;
+        
+        sd.y2 = sd.y;
+
+            if(sd.state){
+                //내림
+                elFigure.forEach((ele,idx)=>{                    
+                    if(window.pageYOffset > offset[idx]){
+                        elFigure[idx].classList.add('active');
+                    }
+                });
+                
+            }else{
+                //올림
+            }
+
+
+        console.log(sd.state);
+
+
+
+        if(window.pageYOffset > 780){
+                console.log('2번 이미지');
+            }
+            // 스크롤 최하단 => 4307
+            // 문서전체 길이 => 5244
+            
+        
+    });
+}
+window.addEventListener('load',init);
+        
+            
+            // // 스크롤값 => console.log(window.pageYOffset);
+            // // 문서전체높이 => console.log(document.documentElement.scrollHeight);
+            // // 브라우저높이 => console.log(window.innerHeight);
+            // // 스크롤이동 => window.scrollTo(0,780)
+            //               window.scrollTo({
+            //                 left:0,
+            //                 top:780,
+            //                 behavior:'smooth'
+            //               });
+            //               //상대수치값
+            //               window.scrollBy(0, 780);
+                          
+            //               //셀렉터가 위치한 곳으로 이동
+            //               셀렉터.scrollIntoView();
+</script>
+</body>
+
+</html>

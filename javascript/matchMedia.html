@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button class>0</button>
+
+    <script>
+
+        let media = window.matchMedia('(max-width:1080px)');
+        let device;
+
+        media.addListener(function(){
+            
+            if(media.matches){
+                device = 'mobile';
+    
+            }else{
+                device = 'PC';
+            }
+        });
+
+        const btn = document.querySelector('button');
+        let num = 0;
+
+        let btnFun = () => {
+            if(device == 'PC'){
+                num++;
+            }else{
+                num--;
+            }
+            btn.textContent = num;
+        }
+
+        btn.addEventListener('click',btnFun);
+
+
+        
+        
+
+
+    </script>
+    
+</body>
+</html>

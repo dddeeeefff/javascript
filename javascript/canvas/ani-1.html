@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<canvas width="1000" height="900"></canvas>
+
+<script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    ctx.font = '40px serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+
+    let count = 0, per = 0;
+    let canvasset = {w:canvas.width, h:canvas.height}
+    let data = [
+        {
+            name:'html',skill:80,
+            color : {default:'#ddd',point : '#f00'},
+            circle : {x:200,y:200,wei:30,r:100} // 매번달라지는 값
+        },
+        {
+            name:'css',skill:90,
+            color : {default:'#ddd',point : '#f00'},
+            circle : {x:450,y:200,wei:30,r:100} // 매번달라지는 값
+        },
+        {
+            name:'js',skill:60,
+            color : {default:'#ddd',point : '#f00'},
+            circle : {x:700,y:200,wei:30,r:100} // 매번달라지는 값
+        }
+    ];
+
+    let max = data.map((d)=>d.skill);
+
+        // 문자.indexOf()
+        max = max.indexOf( Math.max(...max))
+
+
+
+    //map => 배열로 반화시킴
+
+    console.log(max)
+    
+
+    let skills = [];
+
+    function Skill(o){  // 제품을 생산하는 공장
+        this.per = o.skill; // 매번 달라지는 값
+        this.color = o.color;
+        this.circle = o.circle; // 매번달라지는 값
+        this.count = 0;
+        this.deg = 0;
+        this.draw = function(){
+            // 화면출력--------------------------------------------------------------------
+            if(this.per > this.count)
+            this.count++; //생성자함수는 this를 꼭 붙여야됨
+
+            this.deg = (Math.PI * 2) * this.count / 100; //360의 백분
+
+            ctx.beginPath(); //시작
+            
+            ctx.strokeStyle = this.color.default; //색
+            ctx.lineWidth = this.circle.wei; //선 두깨
+            ctx.arc(
+                this.circle.x,
+                this.circle.y,
+                this.circle.r,
+                0,Math.PI * 2,false); //x,y,radius,startangle,endangle,시계반대방향
+            ctx.stroke(); //그리기
+
+            ctx.beginPath();
+            ctx.strokeStyle = '#f00';
+            ctx.arc(
+                this.circle.x,
+                this.circle.y,
+                this.circle.r,
+                0,this.deg,false); //x,y,radius,startangle,endangle,시계반대방향
+            ctx.stroke();
+        
+            ctx.fillText(`${this.count}%`, this.circle.x, this.circle.y); // 문자 출력
+                //화면출력끝-----------------------------------------------------------------
+        }
+        
+
+        // 문자(퍼센트), 
+        // 색상(디폴트, 포인트), 
+        // 원(크기, 선굵기,x,y)
+        // 숫자(카운트 증감)
+
+        // 화면출력()
+    }
+
+    function newFun(){
+        data.forEach((d,key)=>{
+            skills.push(new Skill(d));
+        });
+    }
+    newFun();
+
+    function drawAni(){
+        ctx.clearRect(0,0,1000,900);
+
+        skills.forEach((skill)=>{
+            skill.draw();
+        })
+
+        if(skills[max].count < skills[max].per){
+            requestAnimationFrame(drawAni);
+        }
+        
+    }
+    drawAni();
+
+
+
+
+
+
+    // function drawAni(n){
+    //     count++;
+    //     per = (Math.PI * 2) * count / 100; //360의 백분
+
+    //     ctx.beginPath(); //시작
+    //     ctx.clearRect(0,0,1000,900); // 새항목 그리기 전 초기화
+    //     ctx.strokeStyle = '#ddd'; //색
+    //     ctx.lineWidth = 30; //선 두깨
+    //     ctx.arc(200,200,100,0,Math.PI * 2,false); //x,y,radius,startangle,endangle,시계반대방향
+    //     ctx.stroke(); //그리기
+
+    //     ctx.beginPath();
+    //     ctx.strokeStyle = '#f00';
+    //     ctx.arc(200,200,100,0,per,false);
+    //     ctx.stroke();
+    
+    //     ctx.fillText(`${count}%`, 200, 200); // 문자 출력
+
+    //     if(count < n){
+    //         requestAnimationFrame(()=>{
+    //             drawAni(n);
+    //         });
+    //     }
+    // }
+
+    // drawAni(80);
+
+
+</script>
+
+</body>
+</html>

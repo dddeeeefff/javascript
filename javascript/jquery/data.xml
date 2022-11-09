@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding = "utf-8"?>
+<data>
+<items>
+        <figure>
+            <img src="../img/01.jpg" alt="" />
+            <figcaption>
+                <b>이미지 01</b>
+                <p>xml 테스트 작업중....</p>
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="../img/02.jpg" alt="" />
+            <figcaption>
+                <b>이미지 02</b>
+                <p>xml 테스트 작업중....</p>
+            </figcaption>
+        </figure>
+        <figure>
+            <img src="../img/03.jpg" alt="" />
+            <figcaption>
+                <b>이미지 03</b>
+                <p>xml 테스트 작업중....</p>
+            </figcaption>
+        </figure>
+        
+</items>  
+
+<items2>
+    <h2>제목1</h2>
+    <h2>제목2</h2>
+    <h2>제목3</h2>
+</items2>
+</data>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <div class="fade">
+        <img src="../img/01.jpg">
+        <img src="../img/02.jpg">
+        <img src="../img/03.jpg">
+    </div>
+    <div class="fade-btn">
+        <button>이전</button>
+        <button>다음</button>
+    </div>
+
+    <style>
+        .fade{width: 400px; margin: 100px auto; position: relative;}
+        .fade img{
+            width: 100%;
+            position: absolute;
+            left: 0; top: 0;
+        }
+        .fade-btn{padding-top: 400px; text-align: center;}
+    </style>
+
+    <script>
+        let num = 0, inter, fadeFun;
+
+        $('.fade img').not(":first").hide(); //hide == display:none
+
+        fadeFun = function(param){
+            // (num != 2) ? num++ : num = 0;
+            $('.fade img').eq(num).fadeOut(1000);
+
+            //param 매개변수를 이용하여 이전 버튼 클릭시 이전 이미지 출력??
+            //첫번째이미지(0) 기준 이전클릭시 마지막이미지(2) 출력?? 2 0 1 2 0
+            //param?
+
+            // if(param == '이전' && num ==0){
+            //     num = 2;
+            // }else if(param == '이전' && num >0){
+            //     num--
+            // }
+
+            
+
+            // if(num != 2){
+            //     num++;          
+            // }
+            // else{
+            //     num=0;
+            // }
+
+            if(param == '다음'){
+                (num != 2) ? num ++ : num = 0;
+            }else{
+                (num != 0) ? num -- : num = 2;
+            }
+
+            console.log(num)
+            
+            //eq는 해당 선택자의 인덱스
+            $('.fade img').eq(num).fadeIn(1000); 
+
+        }
+
+        inter = setInterval(fadeFun,2000,'다음');
+
+        $('.fade, .fade-btn')
+        .on('mouseenter', function(){
+            clearInterval(inter);
+        })
+        .on('mouseleave', function(){
+            inter = setInterval(fadeFun,2000);
+        })
+
+        $('.fade, .fade-btn button').on('click',function(){
+            let idx = $(this).index();
+            if(idx==1){
+                fadeFun('다음');
+            }else{
+                fadeFun('이전');
+            }
+        })
+        
+
+        // $('.fade').on({
+        //     mouseover : function(){},
+        //     mouseleave : function(){}
+        // })
+
+
+
+    </script>
+</body>
+</html>

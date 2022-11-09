@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <div class="contents">
+        <section> content 01 </section>
+        <section> content 02 </section>
+        <section> content 03 </section>
+        <section> content 04 </section>
+
+    </div>
+
+    <aside> Top </aside>
+    <style>
+        aside{
+            position: absolute; right: 3%; top: 5%;
+            background-color: #f00;
+            padding: 50px;
+        }
+        .contents{
+            position: relative;
+
+        }
+        section{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        section:nth-child(even){
+            background-color: #ddd;
+        }
+    </style>
+
+    <script>
+        const section = document.querySelectorAll('section');
+        let offset;
+
+        $('section').on('wheel', function(){
+            let delta = event.wheelDelta;
+            if(delta < 0){
+                offset = $(this).next().offset().top;
+            }else{
+                offset = $(this).prev().offset().top;
+            }
+            $('html').animate({
+                scrollTop : offset
+            },{queue:false})
+            //queue -> 발생된 이벤트를 queue라는 공간에 저장
+        });
+
+
+            // $('aside').offset().top, //jquery 결과값
+            // parseInt($('aside').css('top')), //parsenInt는 결과값을 정수형으로 변환
+            let asideTop = parseFloat($('aside').css('top')); // parseFloat은 결과값을 실수형으로 변환
+
+
+
+        $(window).on('scroll',function(){
+            $('aside').animate({
+                top:$(window).scrollTop()
+            },{queue:false});
+        });
+
+
+
+        /*
+        console.log(
+            section[1].offsetTop,
+            $('section').eq(1).position().top
+            // $('section').eq(1).offset().top
+            //jquery에서 오프셋값 구하는 방법
+        )
+        */
+
+
+        //절대값 - offset(), 상대값 - position()
+        //top, left 가로 세로값을 구함.
+
+        
+    </script>
+
+</body>
+</html>
+<!-- 
+절대위치값 -> offset().top | offset().left
+
+상대위치값 -> position().top | position().left
+(부모에 position이 있을 경우)
+
+parseInt('48.252px') //48 정수값
+parseFloat('48.252px') //28.252 실수값
+  -->

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <div class="photo">
+        <img src="../img/01.jpg">
+        <img src="../img/02.jpg">
+        <img src="../img/03.jpg">
+    </div>
+
+    <script>
+        // $(function(){   });
+        // $(document).ready(function(){   });
+        
+        //jquery는 모든 선택자에 $가 붙어야 한다.
+        // $('선택자').method();
+        $('.photo > img').on('click',function(){
+            // console.log($(this).index()) 해당 선택자 인덱스값
+            $(this)
+            .css({
+                border : '5px solid #f00', 
+                transform:'scale(1.2)',
+                backgroundColor : '$f00',
+                'transition' : '0.5s',
+                'font-size' : '2rem'
+            })
+            .fadeOut(1000);
+        });
+
+
+        //위의 것과 결과 동일
+        // const photo = document.querySelectorAll('photo img');
+        // photo.forEach((ele,k)=>{
+        //     ele.addEventListener('click',function(){
+        //         console.log(k);
+        //     });
+        // });
+
+        
+
+    </script>
+
+</body>
+</html>

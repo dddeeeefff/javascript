@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    (function(){
+        console.log('익명함수');
+    })();
+
+    function a(){
+        console.log('명명함수(함수선언식)');
+    }
+    a();
+
+    let b = function(n){   //괄호안의 문자는 매개변수
+        console.log('명명함수(함수표현식)', `파라미터값(${n})`);
+    }
+    b(2); //()값을 보낼 수 있음
+    b(3);
+
+    // window.onclick = function(){  }
+    // window.onclick = b;
+    // window.addEventListener('click', b);
+</script>
+
+<div class="gugudan">
+    <select>
+        <option value="2">2단</option>
+        <option value="3">3단</option>
+        <option value="4">4단</option>
+        <option value="5">5단</option>
+        <option value="6">6단</option>
+        <option value="7">7단</option>
+        <option value="8">8단</option>
+        <option value="9">9단</option>
+    </select>
+    <p></p>
+    
+</div>
+
+<script>
+    const gugudan = document.querySelector('.gugudan p')
+    const btnSelect = document.querySelector('.gugudan select')
+    function gugu(dan){
+        let calc = '';
+        for(let i = 1; i <=9; i++){
+            calc += `${dan} x ${i} = ${dan*i}<br>`;
+        }
+        gugudan.innerHTML = calc; 
+    }
+    btnSelect.addEventListener('change',function(){
+        gugu(btnSelect.value);
+    });
+</script>
+
+
+
+<div class="gugudan2">
+    <h2>2단</h2>
+    <p></p>
+
+    <button value="2">2</button>
+    <button value="3">3</button>
+    <button value="4">4</button>
+    <button value="5">5</button>
+    <button value="6">6</button>
+    <button value="7">7</button>
+    <button value="8">8</button>
+    <button value="9">9</button>
+</div>
+
+
+<script>
+    const gugudan2 = document.querySelector('.gugudan2 p');
+    const btn = document.querySelectorAll('.gugudan2 button');
+
+    function gugu2(dan){
+        let calc = '';
+        for(let i = 1; i <= 9; i++){
+            calc += `${dan} x ${i} = ${dan*i}<br>`;
+        }
+        gugudan2.innerHTML = calc;  //계산 후 출력
+        }
+
+
+        for(let i = 0; i < btn.length; i++){
+            btn[i].addEventListener('click',function(){
+            // console.log(btn[i].value); 콘솔로 받을때
+            gugu2(btn[i].value);
+
+        })
+        }
+    // btn[1].addEventListener('click',function(){
+    //     console.log(btn[1].value);
+    // });
+
+</script>
+
+<div class="jumin">
+    <input type="text" name = "jm1"> - <input type="text" name="jm2">
+    <button>확인</button>
+
+    <p></p>
+
+    <style>
+        .jumin{margin: 200px 0;}
+    </style>
+</div>
+
+
+<script>
+    const inp = document.querySelectorAll('.jumin input');
+    const btnjumin = document.querySelector('.jumin button');
+    const juminResult = document.querySelector('.jumin p');
+
+    let key = [2,3,4,5,6,7,8,9,2,3,4,5];
+
+    function juminFun(){
+        let juminNum = '';
+        let total = 0;
+        // console.log(inp[0].value.length);
+        juminNum = inp[0].value + inp[1].value;
+        // console.log(juminNum);
+        for(let i = 0;i < juminNum.length-1; i++){
+            total += juminNum[i] * key[i];
+        }
+
+        if((11 - (total % 11)) % 10 == juminNum[12]){
+            juminResult.innerHTML = '성공';
+        }
+        else{
+            juminResult.innerHTML = '다시입력하세요.';
+        }
+    }
+    
+    btnjumin.addEventListener('click',juminFun);
+
+    //주민번호(13) 마지막 숫자는 스페셜키
+    //234567892345
+    //곱한 결과값을 모두 더함
+    //11로 나눔
+    //11로 뺀값
+</script>
+
+
+</body>
+</html>

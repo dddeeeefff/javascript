@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        .contents{}
+        section{
+            height: 100vh;
+            display: flex; justify-content: center;
+            align-items: center;
+        }
+        section:nth-of-type(even){
+            background-color: #ddd;
+        }
+
+        aside{
+            position: fixed;
+            right: 5%; top: 50%;
+            transform: translateY(-50%);
+
+        }
+        aside button{
+            width: 15px; height: 15px;
+            border-radius: 100%;
+            border: 2px solid #000;
+            display: block;
+            margin: 10px 0;
+        }
+        aside button.active{
+            background-color: #000;
+        }
+    </style>
+    <div class="contents">
+        <section>content 01</section>
+        <section>content 02</section>
+        <section>content 03</section>
+        <section>content 04</section>
+        <section>content 05</section>
+    </div>
+
+    <aside>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+        <button></button>
+    </aside>
+
+    <script>
+        const btn = document.querySelectorAll('aside button');
+        const section = document.querySelectorAll('section');
+
+        let offset = [];
+        let idx = 0;
+        // offset[0] = 1000;
+        // offset.push();
+
+        section.forEach((ele) => {
+            offset.push(ele.offsetTop); 
+        });
+
+
+        //버튼 수만큼 반복하라
+        btn.forEach((ele,key) => {
+            //각 버튼에 클릭이벤트 발생
+            ele.addEventListener('click',()=>{
+                //스크롤 이동
+                window.scrollTo({
+                    left:0, /* --------------------------------------> ? */
+                    top:offset[key], /* ----------------------------------------> ? */
+                    behavior:'smooth'
+                });
+                // btn[idx].classList.remove('active')
+                // btn[key].classList.add('active')
+                // idx = key;
+            });
+
+        });
+
+        window.addEventListener('scroll',()=>{
+            // 섹션당 높이값? - 어떻게 구하지?
+            // 스크롤시 높이값에 따라 버튼의 배경이 바뀌는가?
+            offset.forEach((v,k)=>{  /* -----------------------------------------> v는 뭐지? */
+                if(window.pageYOffset >= offset[k]){
+                    btn[idx].classList.remove('active');
+                    btn[k].classList.add('active');
+                    idx = k;
+                }
+
+            });
+        });
+
+    </script>
+
+
+</body>
+</html>

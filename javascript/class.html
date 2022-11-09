@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="list">
+        <!-- <figure><img src="./img/01.jpg" alt=""></figure>
+        <figure><img src="./img/02.jpg" alt=""></figure>
+        <figure><img src="./img/03.jpg" alt=""></figure> -->
+    </div>
+
+    <div class="popup">
+        <figure><img src="./img/01.jpg" alt=""></figure>
+    </div>
+
+
+    <style>
+        .list{
+            display: flex; 
+            justify-content: space-between;
+            width: 70%; 
+            margin: 100px auto;
+        }
+        .list figure{margin: 0; width: 30%;}
+        .list figure img{width: 100%;}
+        .popup{
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            left: 0; top: 0;
+
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+        .popup figure{margin: 0;}
+        .popup.active{display: flex;}
+    </style>
+
+    <script>
+        const elList = document.querySelector('.list')
+        let data = ['01.jpg','02.jpg','03.jpg',];
+        let tag = '';
+        data.forEach(function(name){
+            tag += `<figure><img src="./img/${name}" alt=""></figure>`;
+        });
+        elList.innerHTML = tag;
+
+        //event
+        const elFigure = document.querySelectorAll('.list figure');
+        const elPop = document.querySelector('.popup');
+        const elPopImg = document.querySelector('.popup img');
+
+
+        elFigure.forEach(function(figure, index){
+            figure.addEventListener('click',function(){
+                elPop.classList.add('active');
+                elPopImg.setAttribute('src', `./img/${data[index]}`);
+                
+            });
+        });
+        elPop.addEventListener('click',function(){
+            // event.target
+
+            // console.log(event.target.className)
+            // let tag = event.target.className;
+            // if(event.target.className == 'popup active'){
+            //     elPop.classList.remove('active');
+            // }
+
+            if(event.target.classList.contains('popup')){
+                elPop.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

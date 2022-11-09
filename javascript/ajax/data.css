@@ -1,0 +1,30 @@
+.photo{
+    width: 60%; margin: 100px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.thum{width: 20%; padding-right: 10%;}
+.thum > figure{margin: 0;}
+.thum > figure > img{width: 100%;}
+
+.info{
+    width: 70%; 
+    padding-left: 10%; 
+    border-left: 1px solid #000;
+    opacity: 0;
+    transform: translateY(10%);
+    transition: 1s;
+}
+.info.active{
+    opacity: 1;
+    transform: translateY(0%);
+}
+.info > figure{margin: 0;}
+.info > figure > img{width: 100%;}
+.info > div{
+    text-align: center;
+    padding: 5% 0;
+}
+.info > div > b{}
+.info > div > p{}

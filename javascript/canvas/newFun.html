@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="person"></div>
+    
+<script>
+// 생성자 함수, 클래스
+
+// 생성자 함수
+// 생성자 함수는 굳이 변수를 만들 필요가 없음 this.num = 0
+    let info = [
+        {name:'홍길동', age:200},
+        {name:'홍길순', age:500},
+        {name:'홍길남', age:800}
+    ]
+
+    function User(n1,n2){
+        this.num = 0;
+        this.name = n1;
+        this.age = n2;
+
+        this.increment = function(){
+            return ++this.num;
+        }
+    }
+
+    let user = []; // 생성자 함수 실행방법 : 앞에 new라는 함수를 넣어서 정의해야됨
+    info.forEach((data)=>{
+        user.push(new User(data.name, data.age));
+    })
+
+    const person = document.querySelector('.person');
+
+    user.forEach((data)=>{
+        let div = document.createElement('div'),
+            p = document.createElement('p'),
+            code = document.createElement('code'),
+            button = document.createElement('button');
+            p.append(data.name + '/' + data.age);
+            code.append(data.num);
+            button.append('좋아요');
+
+    
+            div.appendChild(p);
+            div.appendChild(code);
+            div.appendChild(button);
+            person.append(div);
+              
+    })
+
+    const elBtn = document.querySelectorAll('button'),
+          elCode = document.querySelectorAll('code');
+
+          elBtn.forEach((btn,key)=>{
+            btn.addEventListener('click', ()=>{
+                
+                elCode[key].textContent = user[key].increment();
+            })
+          })
+
+    
+    
+    
+
+</script>
+
+</body>
+</html>

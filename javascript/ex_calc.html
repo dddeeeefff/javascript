@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        dl{
+            width: 50%; margin: 100px auto;
+            padding: 40px; border: 1px solid #000;
+        }
+        .ex div{
+            display: flex;
+            border-bottom: 1px dashed #000;
+            padding: 10px 0;
+        }
+    </style>
+
+    <div class="ex">
+        <!-- 제목 : 내용 -->
+        <dl>
+            <div>  <!-- dl 안에 div만 허용 -->
+                <dt>과목 :</dt>
+                <dd></dd>
+            </div>
+            <div>
+                <dt>총점 :</dt>
+                <dd></dd>
+            </div>
+            <div>
+                <dt>평균 :</dt>
+                <dd></dd>
+            </div>
+            <div>
+                <dt>등급 :</dt>
+                <dd></dd>
+            </div>
+            <div>
+                <dt>판정 :</dt>
+                <dd></dd>
+            </div>
+        </dl>
+    </div>
+
+
+    <script>
+
+        const ex1 = document.querySelector('.ex > dl > div:nth-of-type(1) > dd');
+        const ex2 = document.querySelector('.ex > dl > div:nth-of-type(2) > dd');
+        const ex3 = document.querySelector('.ex > dl > div:nth-of-type(3) > dd');
+        const ex4 = document.querySelector('.ex > dl > div:nth-of-type(4) > dd');
+        const ex5 = document.querySelector('.ex > dl > div:nth-of-type(5) > dd');
+        
+        // .ex div:nth-of-type(1) dd
+        let html = Number(prompt('HTML'));
+        let css = Number(prompt('CSS'));
+        let js = Number(prompt('Javascript'));
+
+        console.log(html, css, js);
+
+        let 총점 = html + css + js;
+        let 평균 = 총점 / 3;
+        let 등급 = null;
+        let 판정 = null;  //70점 이상 합격
+
+        let A = 평균 >= 90;
+        let B = 평균 >= 80 && 평균 < 90;
+        let C = 평균 >= 70 && 평균 < 80;
+        let D = 평균 < 70;
+
+        if(평균 >= 70){
+            판정 = '합격'
+        }else{
+            판정 = '불합격'
+        }
+
+        if(A){
+            등급 = 'A';
+        }else if(B){
+            등급 = 'B';
+        }else if(C){
+            등급 = 'C';
+        }else{
+            등급 = 'D';
+        }
+
+        // ex dl div:nth-of-type(1) dd.innerHTML = `html(${html}),css(${css}), js(${js})`;
+        ex1.innerHTML = `html(${html}),css(${css}), js(${js})`;
+        ex2.innerHTML = `${총점}`;
+        ex3.innerHTML = `${평균}`;
+        ex4.innerHTML = `${등급}`;
+        ex5.innerHTML = `${판정}`;
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- kakao-login.html -->
+   
+    
+    <div id="info"></div>
+      
+      <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+      <script type="text/javascript">
+        Kakao.init('c774fe5f2170d61075d21b9625b2bf57');
+
+        Kakao.Auth.login({
+            success: function(authObj) {
+
+                Kakao.API.request({
+                    url: '/v2/user/me',
+                    success: function(res) {
+                        console.log(res)
+                        let name = res.properties.nickname;
+                        let email = res.kakao_account.email;
+                        info.innerHTML =  `이름 : ${name} <br> 이메일 : ${email}`;
+                    },
+                    fail: function(error) {
+                    alert(
+                        'login success, but failed to request user information: ' +
+                        JSON.stringify(error)
+                    )
+                    },
+                })
+                
+            },
+            fail: function(err) {
+            alert('failed to login: ' + JSON.stringify(err))
+            },
+        })
+
+       
+      </script>
+      
+
+</body>
+</html>

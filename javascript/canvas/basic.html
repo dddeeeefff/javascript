@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <canvas width="1400" height="900"></canvas>
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        ctx.fillStyle = '#f00';  //색상먼저
+        ctx.fillRect(50,50,100,100);
+        //           x  y  width  height
+
+        ctx.strokeStyle = '#00f';  //색상먼저
+        ctx.lineWidth = 10;
+        ctx.strokeRect(100,100,100,100);
+        //           x  y  width  height
+        //스크립트에서 math는 180도
+        ctx.arc(300,100,50,0,Math.PI * 2, false);  // x,y,r,0,360,cw false시계 ture반시계
+        ctx.stroke(); // 선긋기
+
+        ctx.beginPath();
+        ctx.strokeStyle = '#f0f';
+        ctx.linecap = 'butt';    //'round';
+        ctx.lineWidth = 5;
+        ctx.lineTo(400,100);
+        ctx.lineTo(500,100);
+        ctx.lineTo(450,150);
+        ctx.lineTo(400,100);
+        ctx.closePath();
+        ctx.stroke();
+        //xy좌표 ~ xy좌표  -> 시작과 끝 좌표 입력하면 영역에 선이 그어짐.
+
+        //image
+        const image =  new Image();
+        image.src = '../img/01.jpg';
+
+        image.addEventListener('load',function(){
+
+            ctx.drawImage(image,50,300,400,400); //img,x,y,w,h
+        })
+
+        //video
+        const video = document.createElement('video');
+        video.src='../img/Jellyfish - 110877.mp4';
+        video.muted = 'muted';
+        video.loop = 'loop';
+        video.play();
+
+
+        video.addEventListener('canplaythrough',videoFun)
+   
+        function videoFun(){
+            ctx.drawImage(video,500,300,400,300);
+            requestAnimationFrame(videoFun);
+        }
+        canvas.addEventListener('click', function(){
+            console.log(video.paused)
+            if(video.paused){
+                video.play();
+            }else{
+                video.pause();
+            }
+        });
+
+
+
+
+    </script>
+
+</body>
+</html>

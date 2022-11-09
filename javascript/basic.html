@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script defer src=""></script>
+</head>
+<body>
+    <!-- defer - HTML파싱 후 실행
+          - 스크립트 문서는 html파싱작업과 함께 로드됨
+    
+    자바스크립트 확장자 => 문서이름.js
+
+    [사용예시]
+    HTML에 작성된 내용을 제어하거나 스타일을 꾸며줄 수 있음
+    ex)
+            <div class="a"></div>
+            a클래스 요소를 선택 => document.querySelector('.a')
+
+            명령(a클래스 요소 안에 문자 추가)
+            document.querySelector('.a').textContent = '자바스크립트'; -->
+    
+    <div class="a" id="a"></div>
+    <div class="a" ></div>
+    <div class="a" ></div>
+
+    <script>
+        // a.textContent = '아이디 셀렉터';
+
+        // document.querySelector('.a').textContent = '쿼리 셀렉터';
+
+        // document.querySelectorAll('.a')[1].textContent = '쿼리 셀럭터 올';
+
+        // document.getElementsByClassName('a')[2].textContent = '겟 엘리먼트 클래스 네임';
+
+        // $,_ 기호 사용 가능
+
+        // 변수선언 - > 
+        // const = 상수개념 도입(선언된 값 변경 불가) 
+        // let = 선언된 값 변경 가능
+
+        // ※ const, let 공통점
+        // - 변수명 중복 사용 안됨 
+        // - 호이스팅 안됨
+        // - 변수사용은 선언된 곳 아래쪽에서 사용 가능(block-scope);
+        // - es6 이상 부터 사용
+
+        // var = 선언된 값 변경 가능, es5 미만에서 사용했음
+        // $('.b')  ----> j쿼리
+
+        // const(constant-불변), let(local - 지역), var(variable - 변할수있는)
+
+        const aTag = document.querySelectorAll('.a');
+
+   
+
+        aTag[0].textContent = '쿼리 셀렉터';
+        aTag[1].textContent = '쿼리 셀렉터 올';
+        aTag[2].textContent = '겟 엘리먼트 클래스네임';
+
+
+
+        // var aTag = document.querySelectorAll('.b');
+
+        // let aTag = document.querySelectorAll('.c');
+
+        // 요청 -> 응답(보이기, 숨기기, 삭제하기, 정렬하기)
+
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <style>
+        article{
+            width: 60%;
+            margin: 100px auto;
+        }
+        article > div{
+            background-color: #eee;
+            padding: 5%;
+        }
+    </style>
+    <article class="s1">
+        <h2>산술연산자</h2>
+        <div>
+
+        </div>
+    </article>
+
+    <article class="s2">
+        <h2>할당연산자</h2>
+        <div>
+
+        </div>
+    </article>
+
+    <article class="s3">
+        <h2>증감연산자</h2>
+        <div>
+
+        </div>
+    </article>
+
+    <article class="s4">
+        <h2>비교연산자</h2>
+        <div>
+
+        </div>
+    </article>
+
+    <article class="s5">
+        <h2>관계연산자</h2>
+        <div>
+
+        </div>
+    </article>
+
+
+<!-- 항목 = html(점수), css(점수), js(점수)
+     총점 = 270
+     평균 = 90
+     등급 = A
+     판정 = 합격 -->
+    <article class="ex">
+        <h2>ex</h2>
+        <div>
+
+        </div>
+    </article>
+
+
+
+    <script>
+        const s1 = document.querySelector('.s1 > div');
+        const s2 = document.querySelector('.s2 > div');
+        const s3 = document.querySelector('.s3 > div');
+        const s4 = document.querySelector('.s4 > div');
+        const s5 = document.querySelector('.s5 > div');
+        const ex = document.querySelector('.ex > div');
+        
+        let a = 10, b = 10;
+                        // 10 + 10 = 20
+
+        // string + number = string 타입
+
+        s1.textContent = `${a} + ${b} = ${a + b}`;
+        s1.innerHTML += `<br>${a} - ${b} = ${a - b}`; /* += : 기존의 값에 새 값을 추가 */
+        s1.innerHTML += `<br>${a} * ${b} = ${a * b}`;
+        s1.innerHTML += `<br>${a} / ${b} = ${a / b}`;
+        s1.innerHTML += `<br>${a} % ${b} = ${a % b}`;
+
+        //할당연산자
+        s2.innerHTML += `<br>${a} += ${b} = ${a += b}`;
+        s2.innerHTML += `<br>${a} -= ${b} = ${a -= b}`;
+        s2.innerHTML += `<br>${a} *= ${b} = ${a *= b}`;
+        s2.innerHTML += `<br>${a} /= ${b} = ${a /= b}`;
+        s2.innerHTML += `<br>${a} %= ${b} = ${a %= b}`;
+
+        //증감연산자                                          // (전위)변수(후위)
+        s3.innerHTML += `<br>++${a} = ${++a}`;
+        s3.innerHTML += `<br>--${a} = ${--a}`;
+        s3.innerHTML += `<br>${a}++ = ${a++}`;
+
+        //비교연산자
+        s4.innerHTML += `<br>${a} < ${b} = ${a < b}`;
+        s4.innerHTML += `<br>${a} > ${b} = ${a > b}`;
+        s4.innerHTML += `<br>${a} <= ${b} = ${a <= b}`;
+
+        s4.innerHTML += `<br>${a} == ${b} = ${a == b}`;
+        s4.innerHTML += `<br>${a} != ${b} = ${a != b}`;
+
+        s4.innerHTML += `<br>${a} === ${b} = ${a === b}`;   /* === : 타입and값 동일 */
+        s4.innerHTML += `<br>${a} !== ${b} = ${a !== b}`;   /* === : 타입and값  동일하지 않음*/
+
+        //관계연산자
+        // (비교) && (비교) ==> 좌우에 연산식이 맞을경우(ture)
+        // (비교) || (비교) ==> 좌우의 연산식 중 하나라도 맞을경우(true)
+        s5.innerHTML += `<br>(${a} < ${b}) && (${a} != ${b}) = ${a < b && a != b}`;
+        s5.innerHTML += `<br>(${a} > ${b}) || (${a} != ${b}) = ${a > b || a != b}`;
+
+
+        // ex)
+        let html = 100, css = 80, js = 90;
+        let 총점 = html + css + js;
+        let 평균 = 총점 / 3;
+        let 등급 = null;
+        let 판정 = null;  //70점 이상 합격
+
+        let A = 평균 >= 90;
+        let B = 평균 >= 80 && 평균 < 90;
+        let C = 평균 >= 70 && 평균 < 80;
+        let D = 평균 < 70;
+        
+        if(A){
+            등급 = 'A', 판정 = '합격';
+        }else if(B){
+            등급 = 'B', 판정 = '합격';
+        }else if(C){
+            등급 = 'C', 판정 = '합격';
+        }else{
+            등급 = 'D', 판정 = '불합격';
+        }
+        
+        
+
+        ex.innerHTML += `<br>항목 = html(${html}),css(${css}), js(${js})`;
+        ex.innerHTML += `<br>총점 = ${총점}`;
+        ex.innerHTML += `<br>평균 = ${평균}`;
+        ex.innerHTML += `<br>등급 = ${등급}`;
+        ex.innerHTML += `<br>판정 = ${판정}`;
+        
+
+    </script>
+
+</body>
+</html>

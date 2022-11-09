@@ -1,0 +1,42 @@
+
+section{
+    width: 60%; margin: 100px auto;
+    text-align: center;
+}
+section h2{ font-size: 2rem;}
+section .tab{}
+section .tab > button{
+    background-color: #000;
+    color: #fff;
+    padding: 10px 30px;
+}
+section .tab > button.active{
+    background-color: #f00;
+}
+
+section .content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 100px 0;
+}
+section .content > figure{
+    margin: 0; width: 30%;
+    position: relative;
+    overflow: hidden;
+}
+section .content > figure > img{
+    width: 100%;
+    vertical-align: top;
+}
+section .content > figure > figcaption{
+    position: absolute; left: 0; bottom: -60px;
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0.6);
+    color: #fff;
+    transition: 0.5s;
+}
+section .content > figure:hover > figcaption{
+    bottom: 0;
+}

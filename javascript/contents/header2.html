@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+    *{box-sizing: border-box;}
+    body{margin: 0;}
+    ul{margin:0; padding:0; list-style: none;}
+    a{
+        text-decoration: none;
+        color:#222;
+    }
+
+    header{
+        position:fixed;
+        width:100%;
+    }
+    header .menu{
+        padding:0 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        position: relative;
+        z-index: 3;
+    }
+
+    header nav ul{
+        display: flex;
+        justify-content: space-between;
+    }
+    header nav ul li{
+        position:relative;
+    }
+    header nav ul li > a{
+        display: block;
+        padding:35px 30px;
+    }
+
+
+    header .sub{
+        position: absolute;
+        left:0; bottom:0px;
+        transform: translateY(0%);
+        background-color: #000;
+        width:100%;
+        padding:5%;
+        text-align: center;
+        z-index: 2;
+        transition: 1s;
+    }
+
+    header .sub.active{transform: translateY(100%) ;}
+    header .sub.active ul{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    
+    header .sub ul{
+        transition:opacity 0.5s 0.5s, transform 0.5s 0.5s;
+        /* transition: 0.5s 0.5s; 모든 변경값에 적용 */
+        /* 
+            transition-duration: transform ;
+            transition-timing-function: ease ;
+            transition-delay: 0.5s ; 
+            transition-property: 0.5s ;
+        */
+
+        transform: translateY(-10%);
+        opacity: 0;
+        display: flex;
+        justify-content: space-between;
+        width:80%; 
+        margin:0 auto;
+    }
+    header .sub ul li > a{
+        color:#fff;
+        display: block;
+    }
+
+
+    </style>
+
+
+    <header>
+    <div class="menu">
+        <h1>BI</h1>
+        <nav>
+            <ul>
+                <li><a href="#">기업정보</a></li>
+                <li><a href="#">기업정보</a></li>
+                <li><a href="#">기업정보</a></li>
+            </ul>
+        </nav>
+    </div>
+
+        <div class="sub">
+            <ul>
+                <li>
+                    <a href="#">sub01</a>
+                    <a href="#">sub01</a>
+                    <a href="#">sub01</a>
+                </li>
+                <li>
+                    <a href="#">sub01</a>
+                    <a href="#">sub01</a>
+                    <a href="#">sub01</a>
+                </li>
+                <li>
+                    <a href="#">sub01</a>
+                    <a href="#">sub01</a>
+                    <a href="#">sub01</a>
+                </li>
+                
+            </ul>
+            
+        </div>
+    </header> 
+    
+    <script>
+
+        // const elNav = document.querySelector('.menu nav');
+        const elSub = document.querySelector('.sub');
+        const elHeader = document.querySelector('header');
+
+        elHeader.addEventListener('mouseenter',function(){
+            elSub.classList.add('active');
+        });
+
+        function nav(){
+            // event.target.children
+            // event.target.parentElement
+            // event.target.class
+            // event.target.nodeName
+            // event.target.tagName
+            // event.target.nextElementSibling
+            // event.target.previousElementSibling
+
+            console.log(event.target.tagName);
+
+            let tag = event.target.tagName;
+            let target = event.target.className;
+
+            if(target !== 'menu' && tag != 'H1'){
+                elSub.classList.add('active');
+            }else{
+                elSub.classList.remove('active');
+            }
+        }
+
+        elHeader.addEventListener('mouseover',nav);
+
+        elSub.addEventListener('mouseout',function(){
+            elSub.classList.remove('active');
+        });
+
+
+
+    </script>
+
+</body>
+</html>

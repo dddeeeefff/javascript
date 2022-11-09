@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <script>
+        let today = new Date();
+
+        console.log(
+            `
+            년 -> ${today.getFullYear()}
+            월(0~11)+1 -> ${today.getMonth()+1}
+            일 -> ${today.getDate()}
+            요일(0~6) -> ${['일','월','화','수','목','금','토'][today.getDay()]}
+            시 -> ${today.getHours()}
+            분 -> ${today.getMinutes()}
+            초 -> ${today.getSeconds()}
+            유니티시간 -> ${today.getTime()}
+
+            하루동안초 -> ${24 * 60 * 60 * 1000}
+            `
+        );
+
+        let lastDay = new Date('2023-03-31');
+        let oneday = 24 * 60 * 60 * 1000;
+        console.log(Math.round((lastDay - today) / oneday));
+    </script>
+
+    <div class="popup">
+        <img src="./../../img/01.jpg">
+        <div>
+            <input type="checkbox">
+            오늘 하루동안 보지않기
+            <button>X</button>
+        </div>
+    </div>
+    <style> .popup{display: none;} </style>
+
+    <script>
+
+        let getCookie = document.cookie.match('popup');
+        if(getCookie == null){
+            $('.popup').show(); //show = display:block
+        }else{
+            $('.popup').hide(); // hide = display:none
+        }        
+
+        
+        $('.popup button').on('click',function(){
+            //바닐라 => 셀럭터.checked
+            
+            if($('input').prop('checked')){
+                today.setSeconds(today.getSeconds() + 30);
+                document.cookie = `name = popup; expires = ${today.toUTCString()};`  //쿠키를 남기는 부분
+            }
+
+            $('.popup').hide();
+        });
+    </script>
+
+</body>
+</html>

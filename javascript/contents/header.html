@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{box-sizing: border-box;}
+        ul{margin: 0; padding: 0; list-style: none;}
+        a{
+            text-decoration: none;
+            color: #222;
+        }
+        header{
+            position: fixed;
+            width: 100%;
+            padding: 0 10%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1{}
+        header nav{}
+        header nav ul{
+            display: flex;
+            justify-content: space-between;
+        }
+        header nav ul li{
+            position: relative;
+        }
+        header nav ul li > a{
+            display: block;
+            padding: 10px 30px;
+        }
+
+        header nav ul li:hover > div{display: block;}
+
+        header nav ul li > div{
+            position: absolute;
+            left: 0; bottom: 0;
+            transform: translateY(100%);
+            background-color: #000;
+            width: 100%;
+            padding: 5%;
+            text-align: center;
+            display: none;
+        }
+        header nav ul li > div > a{
+            color: #fff;
+            display: block;
+        }
+
+
+    </style>
+    <header>
+        <h1>BI</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">기업정보</a>
+                    <div>
+                        <a href="#">sub01</a>
+                        <a href="#">sub02</a>
+                        <a href="#">sub03</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">기업정보</a>
+                    <div>
+                        <a href="#">sub01</a>
+                        <a href="#">sub02</a>
+                        <a href="#">sub03</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">기업정보</a>
+                    <div>
+                        <a href="#">sub01</a>
+                        <a href="#">sub02</a>
+                        <a href="#">sub03</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- xml.html . data.xml -->
+    <div class="list">
+        <!-- <figure>
+            <img src="../img/01.jpg" alt="">
+            <figcaption>
+                <b>이미지 01</b>
+                <p>xml 테스트 작업중....</p>
+            </figcaption>
+        </figure> -->
+    </div>
+
+    <style>
+        .list{
+            width: 60%; margin: 100px auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .list figure{width: 30%; margin: 0;}
+        .list figure img{width: 100%;}
+    </style>
+
+    <script>
+        // html(html 문서 기준으로 파일경로 설정), 
+        // css(css 문서 기준으로 파일경로 설정), 
+        // js(html 문서 기준으로 파일경로 설정)
+
+        // js (index.js)
+        // data (data.xml)
+
+        // index.html
+
+        $.ajax({
+            url:'./data.xml',
+            beforeSend : function(){
+                console.log('beforeSend');
+            },
+            complete : function(){
+                console.log('complete');
+            },
+            
+
+            success:function(data){
+                //console.log(data);
+                
+                let figure = $(data).find('items2').html();                   
+                $('.list').html(figure);
+
+                $(data).find('items > figure').each(function(key){
+                    if(key < 10){                   
+                    $('.list').append(`<figure>${$(this).html()}</figure>`);
+                    }               
+                });
+            },
+            
+            error:function(){
+                console.log('실패');
+            }
+        });
+
+    </script>
+</body>
+</html>

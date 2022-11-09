@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="random">
+        <img src="/img/01.jpg" alt="">
+    </div>
+
+<script>
+    
+
+        // floor()소수점 삭제, round()반올림, cell()올림
+        let num;
+        
+        const elRandom = document.querySelector('.random img');
+        
+        elRandom.addEventListener('mousemove',function(){
+            
+            num =  Math.floor(Math.random() * 10 + 1);
+            if(num != 10){
+                num = '0'+ num
+            }
+            elRandom.setAttribute('src',`/img/${num}.jpg`);
+
+        })
+</script>
+
+
+<div class="hol">
+    <h2>홀짝 게임</h2>
+    <p>승 | 패</p>
+    <button value="1">홀</button><button value="2">짝</button>
+    <style>
+        .hol{
+            width: 400px; margin: 100px auto;
+            text-align: center;
+            padding: 40px;
+            border: 2px solid #000;
+        }
+        .hol p{padding:60px; background-color: #eee;}
+        .hol button{font-size: 60px; cursor: pointer;}
+        .hol button:hover{background-color: aqua; color: #f00;}
+    </style>
+</div>
+
+<script>
+    const elResult = document.querySelector('.hol p');
+    const elBtn = document.querySelectorAll('.hol button');
+
+    //random 홀(1), 짝(2)
+    for(let i = 0; i < elBtn.length;i++){
+        elBtn[i].addEventListener('click',function(){
+            let num2 = Math.floor(Math.random() * 2 + 1);
+            let msg;
+            // console.log(elBtn[0].value == num2);
+            if(num2 == elBtn[i].value){
+                // elResult.innerHTML = '승리'
+                msg = `승(${num2})`
+            }
+            else{
+                // elResult.innerHTML = '패배'
+                msg = `패(${num2})`
+            }
+            elResult.textContent = msg;
+
+        });
+    }
+
+</script>
+    
+</body>
+</html>

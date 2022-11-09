@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+    let timeout, num = 1;
+    function timeoutFun(t){
+       timeout = setTimeout(function(){
+            console.log(`${3* num++}초후 출력`);
+            if(num != 3){
+                timeoutFun(t);
+            }
+            //재귀함수
+        }, t);
+    }
+
+    timeoutFun(3000);
+    // clearTimeout(timeOut);
+
+    let num2=0;
+    let interval = setInterval(function(){
+        num2++;
+        console.log('3초 interval');
+        if(num2 == 5){
+            clearInterval(interval);
+        }
+    },3000);
+        
+    </script>
+
+    <div class="skill">
+        <p class="p1">
+            <span>0%</span>
+        </p>
+        <p class="p2">
+            <span>0%</span>
+        </p>
+        <style>
+            .skill{width: 60%; margin:100px auto;}
+            .skill p{background-color: #ddd;}
+            .skill .p1 span{
+                background-color: #f00; color: #fff;
+                display: inline-block;
+                transition: .3s;
+                text-align: center;
+            }
+            .skill .p2 span{
+                background-color: rgba(15, 134, 247, 0.877); color: #fff;
+                display: inline-block;
+                transition: .5s;
+                text-align: center;
+            }
+
+        </style>
+    </div>
+
+    <script>
+        const elSpan = document.querySelectorAll('.skill span');
+      
+    function interval2(i,j){
+        let per = 0, progress;
+        progress = setInterval(function(){
+ 
+                
+            // elSpan1.textContent = per + '%';
+            // elSpan1.style = `width:${per}%`;
+            // elSpan2.textContent = per + '%';
+            // elSpan2.style = `width:${per}%`;
+            if(per < j){
+                per++;
+            }
+            else{
+                clearInterval(progress);
+            }
+            elSpan[i].textContent = per + '%';
+            elSpan[i].style = `width:${per}%`;
+            
+        },100);
+    }
+    interval2(0,80)
+    interval2(1,50)
+
+    </script>
+
+    <div class="photo">
+        <!-- <figure><img src="/img/01.jpg" alt=""></figure>
+        <figure><img src="/img/02.jpg" alt=""></figure>
+        <figure><img src="/img/03.jpg" alt=""></figure> -->
+    </div>
+    <style>
+        .photo{width: 60%; 
+            margin: 100px auto; 
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .photo figure{margin: 0; width: 30%;}
+        .photo figure img{width: 100%; height: 100%;}
+    </style>
+
+    <script>
+        //<figure><img src="/img/01.jpg" alt=""></figure>
+        const elPhoto = document.querySelector('.photo');
+        const photoUrl = ['01.jpg','02.jpg','03.jpg','04.jpg',
+                          '05.jpg','06.jpg','07.jpg','08.jpg','09.jpg','10.jpg'];
+
+        // setTimeout(function(),500);
+
+        for(let i = 0; i < photoUrl.length;i++){ 
+            setTimeout(function(){
+                elPhoto.innerHTML += `<figure><img src="/img/${photoUrl[i]}" alt=""></figure>`;    
+
+            },500*i);
+        }
+        
+    </script>
+
+    
+
+</body>
+</html>

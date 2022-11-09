@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="gugu">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="num369">
+        <!-- 1 / 2 / 3 / ........ -->
+    </div>
+
+    <div class="photo"></div>
+    <div class="like"></div>
+
+    <div class="increment">
+        <figure>
+            <img src="./img/01.jpg">
+            <span></span>
+        </figure>
+        <figure>
+            <img src="./img/02.jpg">
+            <span></span>
+        </figure>
+    </div>
+
+    <style>
+        .gugu{
+            display: flex;
+            justify-content: space-between;
+            width: 60%; margin: 100px auto;
+        }
+        .increment{
+            margin: 100px auto;
+        }
+    </style>
+    
+    <script>
+        // new Array()
+
+        let num = [100, 60, 80];
+        let total = 0;
+        
+            // num[0] + num[1] + num[2]; 기존방법
+            for(let i = 0; i < num.length; i++){
+                // total += num[i];
+                // if(i != 2){
+                //     total += num[i]
+                // }
+
+                switch(i){
+                    case 0: ;
+                    break;
+                    case 1: total += num[i];
+                    break;
+                    
+                    default : total += num[i];
+                }
+
+            }
+
+            let even = 0;
+            for(let j = 1; j <=10; j++){
+                // even += j;
+                if(j % 2 == 0){
+                    even += j;
+                }
+            }
+
+
+    </script>
+
+    <script>
+        let num2 = [70,80,90,60,10,80,100,50];
+        let max = 0;
+        let min = 10;
+        let sum = 0;
+
+
+
+        for(let i = 0; i <num2.length; i++){
+            // num2[i]
+            if(max < num2[i]){
+                max = num2[i];
+            }
+
+            if(min > num2[i]){
+                min = num2[i];
+            }
+
+
+            // num2[i]
+            if(num[i] > 50){
+                sum += num2[i]
+            }
+
+            // 2 x 1 = 2
+            // 2 x 2 = 4
+            // 2 x 3 = 6
+            // 2 x 4 = 8
+
+
+
+
+
+        }
+        console.log(max);
+
+        //gugudan
+        const gugu = document.querySelector('.gugu')
+        // gugu.innerHTML = '<div> 2 x 1 = 2 <br> </div>'
+
+        let dan = '';
+        for(let i =2; i<=5; i++){
+            //2 ~ 5 반복
+            dan += `<div> <h2>${i}단</h2>`;
+            for(let j = 1; j <= 9; j++){
+                //1 ~ 9 반복
+                dan += (`${i} x ${j} = ${i*j}<br>`);
+            }
+                // console.log(`${dan} x ${i} = ${dan*i}`);
+                dan += '</div>';
+
+                // dan = '<div> 2x1=2<br></div>'
+            }
+            gugu.innerHTML = dan;
+
+
+
+
+        let num3 = '';
+        const num369 = document.querySelector('.num369')
+        for(let i = 1; i <= 100; i++){
+            n = i % 10;
+
+            if(/* i % 3 == 0 */ n % 3 ==0 && n != 0){
+                num3 += '*/';
+            }else{
+                num3 += `${i}/`
+            }
+        }
+        num369.innerHTML = num3;
+    
+    </script>
+
+    <script>
+        const photo = document.querySelector('.photo');
+        let imgSrc = ['01.jpg','02.jpg','03.jpg'];
+
+        for(let i = 0; i < imgSrc.length; i++){
+            photo.innerHTML += `<img src="./img/${imgSrc[i]}">`;
+        }
+
+        //클릭, 증감연산자 활용
+        const photoImg = document.querySelectorAll('.photo img');
+
+        // photoImg[0].onclick = function(){ 명령 }
+        const like = document.querySelector('.like');
+        let likeNum = 0;
+        
+        for(let i = 0; i < imgSrc.length; i++){
+            photoImg[i].addEventListener('click',function(){/* 명령 */ 
+            like.textContent = ++likeNum;
+        });
+
+        }
+
+
+
+    </script>
+
+    <script>
+        const increImg = document.querySelectorAll('.increment img')
+        const increSpan = document.querySelectorAll('.increment Span')
+
+        let ImgSrc = ['01.jpg','02.jpg'];
+
+        // const increment = document.querySelector('.increment');
+        let incrementNum = [0,0];
+/*          ++incrementNum[0]
+            ++incrementNum[1] */
+
+        for(let i = 0; i < ImgSrc.length; i++){
+            increImg[i].addEventListener('click',function(){/* 명령 */ 
+            increSpan[i].textContent = ++incrementNum[i];
+        })}
+
+    </script>
+
+</body>
+</html>

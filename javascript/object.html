@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        let data = {
+            //키(속성) : value(값)
+            'javascript' : 80,
+            'html' : 60,
+            'css' : 100,
+            result:function(){
+                
+                
+                return this.css + this.javascript;
+            }
+        }
+        //오브젝트 타입은 키(key)와 값(value)으로 생성
+        //값을 확인할 때 "오브젝트.속성"으로 사용
+        //속성을 확인할 때 "Object.keys(오브젝트)" 사용(배열반환)
+        //메소드 안에서 값을 이용할 때 "this.속성" 사용
+        
+        console.log(Object.keys(data));
+
+    </script>
+
+    <div class="progress">
+        <!-- <div>
+            <p><b>100%</b></p>
+            <span>html</span>
+        </div> -->
+    </div>
+    <style>
+        .progress{
+            width: 60%; margin: 100ps auto;
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .progress div{
+            width: 200px; height: 200px;
+        }
+        .progress div p{
+            width: 100%; height: 100%;
+            background: conic-gradient(red 10deg, gray 0deg);
+            border-radius: 100%;
+            padding: 10%;
+            box-sizing: border-box;
+        }
+        .progress div p b{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+
+            width: 100%; height: 100%;
+            background: #fff;
+            border-radius: 100%;
+        }
+        .progress div span{}
+    </style>
+
+    <script>
+
+        
+        let data2 = {
+
+            'javascript' : 80,
+            'html' : 60,
+            'css' : 100
+        }
+
+        const elprogress = document.querySelector('.progress');
+
+        let elSkill = '';
+        //for in 문
+        for(let key in data2){
+            elSkill += `<div>
+                            <p><b>${data2[key]}</b></p>
+                            <span>${key}</span>
+                        </div>`;
+            // console.log(key, data2[key]);
+        }
+        elprogress.innerHTML = elSkill;
+
+        const elConic = document.querySelectorAll('.progress p');
+        const elPer = document.querySelectorAll('.progress b');
+        let keys = Object.keys(data2); /* 답 */
+        
+        //forEach문은 배열만 가능
+        //element -> p  i -> 숫자
+         elConic.forEach(function(element,i){
+            let num = 0,
+                per = 360*(data2[keys[i]]/100); /* data2 배열요소들을 어떻게 순서대로 사용 */
+
+            let inter = setInterval(function(){
+                if(num < per){
+                    num++;
+                }else{
+                    clearInterval(inter);
+                }
+                // elConic[i].style = `background: conic-gradient(red ${num}deg, gray 0deg)`;
+                // elPer[i].textContent = `${Math.floor(num/360 * 100)}%`;
+                element.style = `background: conic-gradient(red ${num}deg, gray 0deg)`;
+                elPer[i].textContent = `${Math.floor(num/360 * 100)}%`;
+                
+        },5);
+        });
+
+
+
+    </script>
+
+    <div class="board">
+        <h2>게시판</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>내용</th>
+                    <th>날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>01</td>
+                    <td>공지사항입니다. 금일 1시 30분 점심</td>
+                    <td>2022-10-19</td>
+                </tr> -->
+            </tbody>
+        </table>
+
+        <style>
+            .board{width:60%; margin: 200px auto;}
+            .board table{border-collapse: collapse; width: 100%;}
+            .board th, .board td{
+                border: 1px solid #000;
+                border-width: 1px 0 1px 0;
+                padding: 15px 0;
+                text-align: center;
+            }
+        </style>
+    </div>
+
+    <script>
+        const elBoard = document.querySelector('.board tbody');
+        let elTr = '';
+
+        //[{},{},{},{}]
+        //[funtion(){},funtion(){},funtion(){}]
+        //[100,200,300]
+        //['홍길동', '임꺽정']
+
+        let notice = [
+            {
+                id:1,
+                content:'공지사항입니다 금일 점심시간은 1시 30분 입니다.',
+                date:'2022-10-19'
+            },
+            {
+                id:2,
+                content:'공지사항입니다 금일 퇴실시간은 5시 40분 입니다.',
+                date:'2022-10-19'
+            },
+            {
+                id:3,
+                content:'공지사항입니다 금일 입실시간은 9시 30분 입니다.',
+                date:'2022-10-19'
+            }
+        ];
+
+        notice.forEach(function(value,key){
+            elTr += `<tr>
+                        <td>${value.id}</td>
+                        <td>${value.content}</td>
+                        <td>${value.date}</td>
+                     </tr>`;
+        });
+        elBoard.innerHTML = elTr;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- kakao-login.html -->
+   
+    <a href="login.html">로그인</a>    
+    <a href="javascript:kakaoLogout()">로그아웃</a>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript">
+        Kakao.init('6c7c766a0696905f395ca5e542a55865');
+
+        function kakaoLogout() {
+            let msg = confirm('로그아웃할까용?');
+            if(msg){
+                if (Kakao.Auth.getAccessToken()) {
+                Kakao.API.request({
+                    url: '/v1/user/unlink',
+                    success: function (response) {
+                        console.log(response)
+                    },
+                    fail: function (error) {
+                        console.log(error)
+                    },
+                })
+                Kakao.Auth.setAccessToken(undefined)
+                }
+            }
+        }  
+    </script>
+    
+
+</body>
+</html>

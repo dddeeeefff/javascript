@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        img{width: 30%; vertical-align:middle;}
+        .photo div{
+            border: 5px solid #f00;
+            position: absolute;
+            left: 0; top: 0;
+            transition: .5s;
+            box-sizing: border-box;
+        }
+        
+    </style>
+    
+    <div class="photo">
+        <img src="../img/01.jpg">
+        <img src="../img/02.jpg">
+        <img src="../img/03.jpg">
+
+        <div></div>
+    </div>
+
+    <script>
+        function init(){
+        const img = document.querySelectorAll('img');
+        const div = document.querySelector('.photo div');
+
+        let obj = [];
+        img.forEach((ele) =>{
+            obj.push({
+                l:ele.offsetLeft,
+                t:ele.offsetTop,
+                w:ele.offsetWidth,
+                h:ele.offsetHeight
+            })
+        })
+
+        console.log(obj)
+
+        img.forEach((ele,k) =>{
+            ele.addEventListener('mouseenter',()=>{
+                div.style = `top:${obj[k].t}px;
+                             left:${obj[k].l}px;
+                             width:${obj[k].w}px;
+                             height:${obj[k].h}px`
+            })
+        })
+    }
+    window.onload = init;
+    //onload는 한개만 실행
+    </script>
+    
+</body>
+</html>

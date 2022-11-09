@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <style>
+        header{
+            text-align: center;
+            padding: 20px 0;
+        }
+        header a{padding: 0 20px; color: #000;}
+        header a.active{color: #f00;}
+        main{
+            padding: 200px 0;
+            text-align: center;
+            background-color: #ddd;
+        }
+        footer{
+            text-align: center;
+        }
+        main{
+            opacity: 0; 
+            transform: translateY(10%);
+            transition: .5s;
+        }
+        main.active{
+            opacity: 1; 
+            transform: translateY(0%);   
+        }
+    </style>
+</head>
+<body>
+
+
+    <header>
+        <h1>로고</h1>
+        <nav>
+            <a href="main.html">HOME</a>
+            <a href="sub01.html">Sub01</a>
+            <a href="sub02.html">Sub02</a>
+        </nav>
+    </header>
+
+
+    <main>  </main>
+
+    <footer>2022 copyright.</footer>
+    
+</body>
+</html>

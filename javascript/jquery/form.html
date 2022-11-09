@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <fieldset class="allCheck">
+        <legend>약관동의</legend>
+        <form>
+            <ul>
+                <li>
+                    <input type="checkbox" name="terms">
+                    <label>이용약관 동의</label>
+                </li>
+                <li>
+                    <input type="checkbox" name="privacy">
+                    <label>개인정보수집 동의</label>
+                </li>
+
+                <li>
+                    <input type="checkbox" name="all">
+                    <label>모두 동의</label>
+                </li>
+                <li>
+                    <input type="submit" value="저장">
+                </li>
+                
+            </ul>
+      </form>
+    </fieldset>
+    <script>
+        // $('input[name=all]').prop('checked',true);
+
+        $(window).on('submit',function(){
+            if(!$('input[name=terms]').prop('checked')){
+                alert('이용약관동의 체크 확인 바람!!');
+                return;
+            };
+            if(!$('input[name=privacy]').prop('checked')){
+                alert('개인정보수집동의 체크 확인 바람!!');
+                return;
+            };
+            
+            $('.allcheck form').attr('action','http://naver.com');
+            $('.allcheck form').submit();
+
+            event.preventDefault();
+            
+        })
+        $('input[name=all]').on('click',function(){
+            let all = $('input[name=all]').prop('checked');
+
+            $('input[name=terms]').prop('checked',all);
+            $('input[name=privacy]').prop('checked',all);
+        })
+
+
+    </script>
+    
+    <fieldset class="member">
+        <legend>Form</legend>
+        <form>
+            <ul>
+                <li>
+                    <label>아이디</label>
+                    <input type="text" name="id">
+                </li>
+                <li>
+                    <label>이메일</label>
+                    <input type="email" name="email">
+                </li>
+                <li>
+                    <label>연락처</label>
+                    <input type="text" name="tel">
+                </li>
+                <li>
+                    <input type="submit" value="저장">
+                </li>
+                
+            </ul>
+      </form>
+    </fieldset>
+    <script>
+        $('.member input[type=submit]').on('click', function(){
+            event.preventDefault();
+            
+            let emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+            let idReg = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; 
+            let telReg = /^\d{3}-\d{3,4}-\d{4}$/;
+
+            if(!idReg.test($('input[name-id]').val())){
+                alert('아이디 확인하세요!');
+                $('input[name=id]').focus();
+                return;
+            }
+            if(!emaliReg.test($('input[name-email]').val())){
+                alert('이메일 확인하세요!');
+                $('input[name=email]').focus();
+                return;
+            }
+            if(!telReg.test($('input[name-tel]').val())){
+                alert('전화번호 확인하세요!');
+                $('input[name=tel]').focus();
+                return;
+            }
+
+
+
+            // console.log(
+            //     $('input[name-id]').val() == '',
+            //     idReg.test($('input[name-id]').val())
+            // );
+
+
+
+
+        })
+    </script>
+
+    <script>    
+        let str = "javascript자바html스크립트 +0*/_ HTML5 02 125 123456789";
+        // 정규식선언 => / /, new RegExp()
+        console.log(
+            /javascript/.test(str),
+            new RegExp('javascript').test(str),
+            str.match(/javascript/), // 대괄호가 없으면 통으로 묶어서 결과 나옴.
+            str.match(/[^javascript]/g), //대괄호는 or와 같다고 보면 됨.
+            str.match(/[A-Z]/g), 
+            str.match(/[html]/ig), // i는 대소문자 구분 x
+            str.match(/[0-9]/g),
+            str.match(/\d/g),
+            str.match(/script|html/ig),
+            str.match(/[ㄱ-힣]/g),
+            
+            str.match(/\d{3,6}/g), // 3자리 또는 6자리
+            str.match(/\d{3,}/g) // 3자리 이상
+        )
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <style>
+        .faq{width: 60%; margin: 100px auto;}
+        .faq li{border-top: 1px solid #000; padding: 15px 0;}
+        .faq li > div{
+            background-color: #ddd; padding: 30px;
+            display: none;
+        }
+    </style>
+    
+    <div class="faq">
+        <h2>FAQ</h2>
+        <ul>
+            <li>공지사항입니다. 금일 퇴실 없음...
+                <div>
+                    6시20분 전까지 못함...
+                </div>
+            </li>
+            <li>공지사항입니다. 금일 퇴실 없음...
+                <div>
+                    6시20분 전까지 못함...
+                </div>
+            </li>
+            <li>공지사항입니다. 금일 퇴실 없음...
+                <div>
+                    6시20분 전까지 못함...
+                </div>
+            </li>
+            <li>공지사항입니다. 금일 퇴실 없음...
+                <div>
+                    6시20분 전까지 못함...
+                </div>
+            </li>
+            <li>공지사항입니다. 금일 퇴실 없음...
+                <div>
+                    6시20분 전까지 못함...
+                </div>
+            </li>
+            <li>공지사항입니다. 금일 퇴실 없음...
+                <div>
+                    6시20분 전까지 못함...
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        let num = 0;
+        $('.faq li').on('click',function(){
+            // $('.faq li div').eq(0).slideDown();
+                // $(this).find('div').slideToggle();  //클릭한 요소의 div라는 요소를 찾아라
+                let idx = $(this).index();
+                
+                if(num != idx){
+                    $('.faq li div').slideUp();  //모든 div를 닫아라.
+                }
+
+                $(this).find('div').slideToggle();          
+                num = idx;
+
+
+            //열려있는 div를 재클릭시 닫혀야함. 두가지 명령을 동시에 적용시켜야 됨.
+        
+        });
+
+
+    </script>
+
+</body>
+</html>

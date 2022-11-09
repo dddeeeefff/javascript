@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="tab">
+        <div class="t-head">
+            <button>tab01</button>
+            <button>tab02</button>
+            <button>tab03</button>
+        </div>
+        <div class="t-body">
+            <div>content 01</div>
+            <div>content 02</div>
+            <div>content 03</div>
+        </div>
+    </div>
+    <style>
+        .tab{width: 60%; margin: 100px auto;}
+        .tab button{}
+        .tab button.active{
+            background-color: #000;
+            color: #fff;
+        }
+
+        .tab .t-body{
+            min-height: 500px;
+            border: 3px solid #000;
+        }
+        .tab .t-body div{
+            display: none;
+            font-size: 5em;
+        }
+        .tab .t-body div.active{
+            display: block;
+        }
+    </style>
+
+    <script>
+        const elHead = document.querySelectorAll('.tab button');
+        const elContents = document.querySelectorAll('.t-body div');
+
+        let idx = 0;
+
+        elHead.forEach(function(btn, key){
+            btn.onclick = function(){
+                elHead[idx].classList.remove('active');
+                elContents[idx].classList.remove('active');
+                
+                this.classList.add('active');
+                elContents[key].classList.add('active');
+
+                idx = key;
+
+
+                // btn.classList.add('active');
+                // elHead[key].classList.add('active');
+            }
+        });
+
+        // elHead[0].classList.add('active');       추가
+        // elHead[0].classList.remove('active');    삭제
+        // elHead[0].classList.toggle('active');    추가|삭제
+        // elHead[0].classList.contains('active');  존재유무(ture, false)
+    </script>
+</body>
+</html>

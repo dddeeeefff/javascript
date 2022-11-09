@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .slide-wrap{width: 60%; margin: 100px auto;}
+        .slide{overflow: hidden; width: 100%;}
+        .slide > div{
+            display: flex;
+            transform: translateX(0%);
+            transition: 1s;
+        }
+        .slide > div > figure{
+            flex-shrink: 0;
+            width: 100%; 
+            margin: 0;
+        }
+        .slide > div > figure > img{width: 100%;}
+    </style>
+    <div class="slide-wrap">
+        <div class="slide">
+            <div>
+                <figure><img src="./img/01.jpg"></figure>
+                <figure><img src="./img/02.jpg"></figure>
+                <figure><img src="./img/03.jpg"></figure>
+            </div>
+        </div>
+        <div class="btn">
+            <button data-btn="prev">이전</button>
+            <button data-btn="next">다음</button>
+        </div>
+    </div>
+
+    <script>
+
+        // 막히는 부분
+        // 뭉쳐진 사진을 어떻게 바꿀 수 있는지 remove? z-index?
+        // 각 버튼의 클릭 이벤트를 어떻게 구현하는지
+        // 순서대로 바꾸는 방법
+
+        // const slide_wrap = document.querySelector('.slide-wrap');
+        const slide = document.querySelector('.slide > div');
+        // const figure = document.querySelector('.slide > div > figure');
+        const btn = document.querySelector('.btn');
+        let idx = 1;
+
+        const figure = document.querySelectorAll('.slide  figure');
+
+        //true를 넣으면 자식요소까지 포함
+        let cloneFirst = figure[0].cloneNode(true);  
+        let cloneLast = figure[2].cloneNode(true);
+
+        slide.append(cloneFirst);  //append ->  추가
+        slide.prepend(cloneLast);
+
+
+        slide.style = `transform:translateX(${-idx*100}%)`;
+
+        // cloneNode() 복제(true는 자식요소를 포함시킴)
+        // append() 추가(셀렉터 안쪽 마지막 요소 뒤로 추가)
+        // prepend() 추가(셀렉터 안쪽 첫번째 요소 앞으로 추가)
+
+
+        btn.addEventListener('click',() =>{
+            //내가 클릭하는 버튼
+            // event.target.textContent   //이전 / 다음
+            // event.target.className
+            // event.target.classList.contains('next');
+            /* event.target.dataset.btn */  /* prev,next */
+            let btnName = event.target.dataset.btn;
+            slideFun(btnName);
+            // slideFun('prev');
+        });
+
+        function slideFun(s){
+            if(s == 'next'){
+                if(idx<4)idx++;
+            }else{
+                if(idx>0)idx--;
+            }
+            slide.style = `transition:1s; transform:translateX(${-idx*100}%)`;
+
+            setTimeout(function(){
+                if(idx == 4){
+                    idx = 1;
+                    slide.style = `transition:0s; transform:translateX(${-idx*100}%)`;
+
+                }
+            },1100)
+
+
+            if(idx == 4){
+                idx = 1;
+                slide.style = `transform:translateX(${-idx*100}%)`;
+            }
+        }
+
+
+        //무한루프 2 0 1 2 0
+    </script>
+</body>
+</html>

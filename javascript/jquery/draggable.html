@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
+</head>
+<body>
+
+    <div class="popup">
+        팝업내용
+        <style>.popup{
+            padding: 100px; 
+            border: 1px solid #000;
+            width: 300px;
+            text-align: center;
+            }
+        </style>
+    </div>
+    <script>
+        let num = {s:0,d:0,state:true};
+        $('.popup').draggable({
+            axis:'x',
+            revert : function(){
+                // 좌측 revert작동 / 우측 애니메이션 작동 // false로 놔야 revert가 작동이 안됨.
+                num.state = (num.s < num.d) ? false : true;
+                if(!num.state && (num.d - num.s) > $('.popup').width() * 0.3){
+                    num.state = false;
+                }else{
+                    num.state = true;
+                }
+                return num.state;
+            },
+            start : function(){
+                num.s = event.pageX;
+            },
+            drag : function(){
+                num.d = event.pageX;
+            },
+            stop : function(){
+                if(!num.state){ // 앞에 느낌표는 부정(false)
+                    //애니메이션 되라...
+                    // console.log('애니메이션')
+                    let offset = $('.popup').offset().left
+                    $('.popup').animate({ //스크립트에서 단위를 적지 않으면 자동으로 px 적용
+                        marginLeft : offset + 200
+                    });
+                }
+            }
+        });
+            
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items>
+    <item>
+        <type>html</type>
+        <src>../../img/01.jpg</src>
+        <subject>html 01</subject>
+    </item>
+    <item>
+        <type>html</type>
+        <src>../../img/02.jpg</src>
+        <subject>html 02</subject>
+    </item>
+    <item>
+        <type>html</type>
+        <src>../../img/03.jpg</src>
+        <subject>html 03</subject>
+    </item>
+    <item>
+        <type>css</type>
+        <src>../../img/04.jpg</src>
+        <subject>css 01</subject>
+    </item>
+    <item>
+        <type>css</type>
+        <src>../../img/05.jpg</src>
+        <subject>css 02</subject>
+    </item>
+    <item>
+        <type>css</type>
+        <src>../../img/06.jpg</src>
+        <subject>css 03</subject>
+    </item>
+    <item>
+        <type>js</type>
+        <src>../../img/07.jpg</src>
+        <subject>js 01</subject>
+    </item>
+    <item>
+        <type>js</type>
+        <src>../../img/08.jpg</src>
+        <subject>js 02</subject>
+    </item>
+    <item>
+        <type>js</type>
+        <src>../../img/09.jpg</src>
+        <subject>js 03</subject>
+    </item>
+</items>

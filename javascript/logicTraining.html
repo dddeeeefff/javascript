@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container1">
+        <h2 class="animate1">글자</h2>&nbsp;
+        <h2 class="animate1">나타나는</h2>&nbsp;
+        <h2 class="animate1">무한 애니메이션</h2>&nbsp;
+        <h2 class="animate1"> 만들기</h2>
+    </div>
+    <div class="container2">
+        <div><h2 class="animate2">글자</h2></div>
+        <div><h2 class="animate2">나타나는</h2></div>
+        <div><h2 class="animate2">무한 애니메이션</h2></div>
+        <div><h2 class="animate2"> 만들기</h2></div>
+    </div>
+    
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: wheat;
+        }
+        .container1{
+           height: 100vh;
+           display: flex;
+           margin: 0 auto;
+           justify-content: center;
+           align-items: center;
+        }
+        .container2{
+           height: 100vh;
+           display: block;
+           margin: 0 auto;
+           text-align: left;
+
+        }
+        h2{
+            
+            top: 45vh;
+            font-size: 40px;
+            width: auto;
+            height: auto;
+            text-align: left;
+            opacity: 0;
+        }
+        .animate2{
+        }
+
+        .animate2.on{
+            animation: slidein 1s forwards;
+        }
+        .animate2.off{
+            animation: slideout 1s forwards;
+        }
+
+        @keyframes slidein{
+            0%{
+                opacity: 0;
+                padding-left: 0%;
+                /* width: 150%; */
+            }
+            100%{
+                opacity: 1;
+                padding-left: 10%;
+                /* width: 100%; */
+            }
+        }
+
+        @keyframes slideout{
+            0%{
+                opacity: 1;
+                padding-left: 10%;
+                /* width: 150%; */
+            }
+            100%{
+                opacity: 0;
+                padding-left:  0%;
+                /* width: 100%; */
+            }
+        }
+
+
+    </style>
+
+
+    <script>
+
+        const container = document.querySelector('.container');
+        const animate1 = document.querySelectorAll('.animate1');
+        const animate2 = document.querySelectorAll('.animate2');
+
+        let num = 0, timer1,timer2;
+
+        animate1.forEach((v,k) => {
+            timer = setTimeout(() => {
+                animate1[k].style = `opacity:1; transition:1s; animation: fadeInLeft 1s;`
+            },600*(k+4));     
+        })
+
+
+         animate1.forEach((v,k) => {
+                timer = setTimeout(() => {
+                    animate1[k].style = `opacity:0; transition:1s;`
+                },1000*(k+6));   
+        })
+
+
+
+
+    function text1(){
+        animate1.forEach((v,k) => {
+            timer1 = setTimeout(() => {
+                animate1[k].style = `opacity:1; transition:1s;`
+            },600*(k+4));     
+        })
+
+
+         animate1.forEach((v,k) => {
+                timer1 = setTimeout(() => {
+                    animate1[k].style = `opacity:0; transition:1s;`
+                },1000*(k+6));   
+        })
+    }
+
+    window.setInterval(text1,8000);
+
+
+
+
+    animate2.forEach((o,j) => {
+            timer2 = setTimeout(() => {
+                animate2[j].classList.add('on');
+            },600*(j+2));     
+        })
+
+    animate2.forEach((o,j) => {
+                timer2 = setTimeout(() => {
+                    animate2[j].classList.add('off');
+                },1000*(j+4));   
+        })
+
+     animate2.forEach((o,j) => {
+                timer2 = setTimeout(() => {
+                    animate2[j].classList.remove('on');
+                    animate2[j].classList.remove('off');
+                },1000*(j+6));   
+        })
+
+
+    function text2(){
+    animate2.forEach((o,j) => {
+            timer2 = setTimeout(() => {
+                animate2[j].classList.add('on');
+            },600*(j+1));     
+        })
+
+    animate2.forEach((o,j) => {
+                timer2 = setTimeout(() => {
+                    animate2[j].classList.add('off');
+                },1000*(j+4));   
+        })
+
+     animate2.forEach((o,j) => {
+                timer2 = setTimeout(() => {
+                    animate2[j].classList.remove('on');
+                    animate2[j].classList.remove('off');
+                },1000*(j+8));   
+        })
+
+    }
+    window.setInterval(text2,9000);
+
+    //()는 실행을 의미한다.
+    </script>
+</body>
+</html>
