@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <canvas width="500" height="500" style="border:1px solid #000;"></canvas>
+
+    <script>
+        const canvas = document.querySelector('canvas'),
+              ctx = canvas.getContext('2d');
+        
+        let m = {x:0,y:0,state:false};
+        let color = '#000'
+
+        function rect(){
+            ctx.fillRect(200,200,150,150); // 사각형
+            ctx.fillStyle = color;
+        }
+        rect();
+
+        function draw(){
+            m.x = event.offsetX;
+            m.y = event.offsetY;
+
+            let posX = m.x > 200 && m.x <350
+            let posY = m.y > 200 && m.y <350
+
+            if(posX && posY){
+                console.log('클릭')
+                color = '#f00';
+                rect();
+            }
+        }
+
+        // window.addEventListener('mousemove',draw);
+        window.addEventListener('click',draw);
+    </script>
+</body>
+</html>

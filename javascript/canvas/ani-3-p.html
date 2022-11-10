@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<canvas width="1000" height="900"></canvas>
+
+<script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+    let size = {w:canvas.width,h:canvas.height};
+    let x = ran(size.w - 50), dx = 5, y =ran(size.h - 50), dy = 5;
+    let count = 0;
+
+    function Circle(){
+
+        this.x = ran(size.w - 50);
+        this.y = ran(size.h - 50);
+        this.dx = dx;
+        this.dy = dy;
+    }
+
+
+    
+
+    function drawAni(){
+        this.x += this.dx;
+        this.y += this.dy;
+        ctx.clearRect(0,0,size.w,size.h);
+        ctx.beginPath();
+        ctx.arc(x,y,50,0,Math.PI*2);
+        ctx.fill();
+        
+        if(size.w - 50 < x || x < 50 && dx != 5){
+            dx *= -1;
+            ctx.fillStyle = `rgb(${ran(255)},${ran(255)},${ran(255)})`;
+        }
+
+        if(size.h - 50 < y || y < 50 && dy != 5){
+            dy *= -1;
+            ctx.fillStyle = `rgb(${ran(255)},${ran(255)},${ran(255)})`;
+        }
+
+        requestAnimationFrame(drawAni);
+    }
+    drawAni();
+
+    function ran(n){
+        return Math.floor(Math.random() * n)
+    }
+
+ </script>
+
+</body>
+</html>

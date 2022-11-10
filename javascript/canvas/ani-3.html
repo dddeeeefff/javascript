@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<canvas width="1000" height="900"></canvas>
+
+<script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+    let size = {w:canvas.width,h:canvas.height};
+
+
+    
+    function ran(n){
+        return Math.floor(Math.random() * n)
+    }
+
+    function CreateCircle(){  //뽑아내려면 new를 사용해 인스턴스
+        this.x = ran(size.w * 0.8) + 50;  
+        this.dx = ran(3)+5;
+        this.y = ran(size.h * 0.8) + 50;
+        this.dy = ran(3)+5;
+        this.r = ran(50);
+        this.color = `rgb(${ran(255)},${ran(255)},${ran(255)})`;
+
+        this.draw = function(){
+            this.x += this.dx;
+            this.y += this.dy;
+
+            ctx.fillStyle = this.color;
+
+            // ctx.clearRect(0,0,size.w,size.h);
+            ctx.beginPath();
+            ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+            ctx.fill();
+            
+            if(size.w - 50 < this.x || this.x < 50){
+                this.color = `rgb(${ran(255)},${ran(255)},${ran(255)})`;
+                this.dx *= -1;
+            }
+            if(size.h - 50 < this.y || this.y < 50){
+                this.color = `rgb(${ran(255)},${ran(255)},${ran(255)})`;
+                this.dy *= -1;
+            }
+
+        }
+    }
+
+    let ea = 100, circle = new Array();  //circle은 장소?
+    for(let i = 0; i < ea; i++){
+        circle.push(new CreateCircle());
+    }
+
+    
+    function drawAni(){
+        ctx.clearRect(0,0,size.w,size.h)
+        circle.forEach(item => {
+            item.draw();
+        })
+        requestAnimationFrame(drawAni);
+    }
+    drawAni();
+
+
+ </script>
+
+</body>
+</html>

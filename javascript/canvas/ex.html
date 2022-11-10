@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 중력(점점 빨라짐)
+    벽닿으면(상승위치점 10% 감소) -->
+    <canvas id="canvas" width="700" height="500" style="border: 1px solid #000;"></canvas>
+    
+    <script>
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        let size = {w:canvas.width,h:canvas.height};
+
+
+        function draw(){
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(300,100,50,0,Math.PI*2)
+            ctx.closePath();
+            ctx.fill();
+        }
+        draw();
+
+        function down(){
+            console.log('aaa')
+            ctx.arc(300,450,50,0,Math.PI*2)
+            ctx.beginPath();
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        canvas.addEventListener('click',down);
+
+        
+            
+
+
+
+    </script>
+</body>
+</html>

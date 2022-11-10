@@ -1,0 +1,25 @@
+1. 생성자 함수를 선언해서 각각의 수치를 this.으로 정리
+
+2. this.imgRoad로 함수를 선언 -> src 값을 가져올 url과 로드 이벤트 발생(this.draw에서 가져옴)
+
+3. this.draw로 함수 선언 -> 변화를 줄 x,y 수치 및 drawImage 호출
+   if 문으로 x,y의 제한범위 지정
+
+
+4. 이미지들을 가져올 images라는 배열 선언
+
+5. data에서 반복적으로 데이터를 가져오기 위해 data.forEach를 선언
+   push를 이용해 createImage로부터 images에 순차적으로 이미지 주소 전송
+
+6. ran 함수를 선언하여 처음 위치가 랜덤으로 나오게 함
+
+7. ani 함수를 선언하여 이전의 불필요한 요소 제거
+
+8. images.forEach((photo)=>{
+	photo.draw();
+});
+  images 안에 3개의 객체를 한번에 출력하기 위해 forEach문 선언 후 draw함수 실행
+
+9. requestAnimationFrame(ani);로 지속적인 함수 움직임 표현
+
+10. ani();로 함수실행

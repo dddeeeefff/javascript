@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="line">
+        <input type="color">
+        <select>
+            <option value="3">3px</option>
+            <option value="5">5px</option>
+            <option value="10">10px</option>
+        </select>
+    </div>
+    <canvas width="500" height="500" style="border:1px solid #000;"></canvas>
+
+    <script>
+        const canvas = document.querySelector('canvas'),
+              ctx = canvas.getContext('2d'),
+              color = document.querySelector('.line input'),
+              line = document.querySelector('.line select');
+        
+        let m = {x:0,y:0,state:false};
+
+        function mouseState(){
+            m.state = (event.type ==='mousedown') ? true : false;
+            ctx.beginPath();
+        }
+
+        function draw(){
+            
+            console.log(m.x)
+            m.x = event.offsetX;
+            m.y = event.offsetY;
+
+            if(m.state){
+                ctx.strokeStyle = color.value;
+                ctx.lineWidth = line.value;
+                ctx.lineCap = 'round';
+                ctx.lineTo(m.x,m.y);
+                ctx.stroke();
+            }
+        }
+
+        window.addEventListener('mousedown',mouseState); //mousedown 이벤트 발생시 draw 함수 발동
+        window.addEventListener('mouseup',mouseState);
+        canvas.addEventListener('mousemove',draw);
+    </script>
+</body>
+</html>

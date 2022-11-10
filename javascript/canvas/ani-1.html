@@ -77,6 +77,8 @@
                 0,Math.PI * 2,false); //x,y,radius,startangle,endangle,시계반대방향
             ctx.stroke(); //그리기
 
+
+            
             ctx.beginPath();
             ctx.strokeStyle = '#f00';
             ctx.arc(
@@ -90,8 +92,15 @@
                 //화면출력끝-----------------------------------------------------------------
         }
         
+
+        // 문자(퍼센트), 
+        // 색상(디폴트, 포인트), 
+        // 원(크기, 선굵기,x,y)
+        // 숫자(카운트 증감)
+
+        // 화면출력()
     }
-    
+
     function newFun(){
         data.forEach((d,key)=>{
             skills.push(new Skill(d));
@@ -101,7 +110,7 @@
 
     function drawAni(){
         ctx.clearRect(0,0,1000,900);
-        
+
         skills.forEach((skill)=>{
             skill.draw();
         })
@@ -111,14 +120,12 @@
         }
         
     }
-    drawAni();    
-    
-    // 문자(퍼센트), 
-    // 색상(디폴트, 포인트), 
-    // 원(크기, 선굵기,x,y)
-    // 숫자(카운트 증감)
+    drawAni();
 
-    // 화면출력()
+
+
+
+
 
     // function drawAni(n){
     //     count++;

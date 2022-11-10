@@ -18,40 +18,85 @@
     let data = [
         {src:'../img/01.jpg',x:0,y:0,w:0,h:0},
         {src:'../img/02.jpg',x:0,y:0,w:0,h:0},
-        {src:'../img/03.jpg',x:0,y:0,w:0,h:0}
+        {src:'../img/03.jpg',x:0,y:0,w:0,h:0},
+        {src:'../img/04.jpg',x:0,y:0,w:0,h:0}
     ]
-    let img = new Image();
+
+    function CreateImage(url){ // 화면에 출력하는 부분
+        this.img = new Image()
+        this.w = ran(size.w*0.3);
+        this.h = ran(size.h*0.3);
+        this.x = ran(size.w);
+        this.y = ran(size.h);
+
+        this.imgRoad = ()=>{
+            this.img.src = url;
+            this.img.addEventListener('load',this.draw);
+        }
+        this.draw = ()=> {
+            this.x += 5;
+            this.y += 5;
+            ctx.drawImage(
+                this.img,
+                this.x,
+                this.y,
+                this.w,
+                this.h
+            );
+            if(this.x > size.w){
+                this.x -= size.w + this.w;
+            }
+            if(this.y > size.w){
+                this.y -= size.w + this.y;
+            }
+        }
+    }
+
+    let images = [];
+    data.forEach((v,k)=>{
+        images.push(new CreateImage(v.src)); //이미지 주소가 넘어감
+        images[k].imgRoad();
+    })
+
+
+
+    // let img = new Image(); //Image는 브라우저가 이미 가지고 있음
     
-    img.src = data[0].src;
-    data[0].x = ran(size.w);
-    data[0].y = ran(size.h);
-    data[0].w = ran(size.w * 0.3);
-    data[0].h = ran(size.h * 0.3);
+    // img.src = data[0].src;
+    // data[0].x = ran(size.w);
+    // data[0].y = ran(size.h);
+    // data[0].w = ran(size.w * 0.3);
+    // data[0].h = ran(size.h * 0.3);
 
-    console.log(data)
 
-    img.addEventListener('load', ani)
 
     function ran(n){
         return Math.floor(Math.random()* n);
     }
 
     function ani(){
-        data[0].x += 5;
-        ctx.clearRect(0,0,size.w,size.h);
-        ctx.drawImage(
-            img,
-            data[0].x,
-            data[0].y,
-            data[0].w,
-            data[0].h
-        );
-        if(data[0].x > size.w){
-            data[0].x -= size.w + data[0].w;
-        }
+        // data[0].x += 5;
+        // ctx.clearRect(0,0,size.w,size.h);
+        // ctx.drawImage(
+        //     img,
+        //     data[0].x,
+        //     data[0].y,
+        //     data[0].w,
+        //     data[0].h
+        // );
+        // if(data[0].x > size.w){
+        //     data[0].x -= size.w + data[0].w;
+        // }
 
+        // requestAnimationFrame(ani);
+
+        ctx.clearRect(0,0,size.w,size.h);
+        images.forEach((photo)=>{ //3개의 객체를 한번에 출력하기 위해
+            photo.draw();
+        });
         requestAnimationFrame(ani);
     }
+    ani();
 </script>
 
 </body>
